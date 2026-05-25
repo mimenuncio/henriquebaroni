@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gestão anual e personalizada de milhas e viagens para quem valoriza tempo, discrição e experiências de alto padrão.">
+<title>Henrique Baroni — Gestão de Milhas e Viagens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#090d16;
+  --navy-mid:#0d1220;
+  --navy-card:#111928;
+  --gold:#b8973a;
+  --gold-light:#d4af62;
+  --gold-pale:#edd98a;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,0.5);
+  --muted-mid:rgba(255,255,255,0.65);
+  --border:rgba(184,151,58,0.18);
+  --border-soft:rgba(255,255,255,0.06);
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 5vw;
+  background:rgba(9,13,22,0.92);backdrop-filter:blur(18px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-inner{display:flex;align-items:center;gap:0.9rem}
+.nav-mark{height:42px;width:auto;display:block}
+.nav-divider{width:0.5px;height:18px;background:var(--border)}
+.nav-text{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted)}
+.nav-cta{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--navy);background:var(--gold-light);
+  padding:0.62rem 1.4rem;text-decoration:none;font-weight:600;
+  transition:background 0.2s;
+}
+.nav-cta:hover{background:var(--gold-pale)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:7rem 5vw 5rem;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 38%,rgba(184,151,58,0.07) 0%,transparent 65%);
+}
+.hero-eyebrow{
+  font-size:0.57rem;letter-spacing:0.44em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;position:relative;
+  opacity:0;animation:fu 0.8s 0.1s ease forwards;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.25rem,4.4vw,4.8rem);
+  font-weight:300;line-height:1.06;letter-spacing:-0.015em;
+  max-width:900px;margin-bottom:1.8rem;position:relative;
+  opacity:0;animation:fu 0.9s 0.22s ease forwards;
+}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{
+  font-size:0.88rem;line-height:1.95;color:var(--muted);
+  max-width:640px;margin-bottom:3rem;letter-spacing:0.025em;
+  position:relative;
+  opacity:0;animation:fu 0.9s 0.38s ease forwards;
+}
+.hero-sub strong{color:rgba(255,255,255,0.85);font-weight:400}
+.hero-sub .hero-line{display:inline-block;max-width:610px}
+.btn-gold{
+  display:inline-block;font-size:0.68rem;letter-spacing:0.24em;
+  text-transform:uppercase;color:var(--navy);background:var(--gold-light);
+  padding:1.1rem 2.8rem;text-decoration:none;font-weight:600;
+  transition:background 0.2s,transform 0.15s;position:relative;
+}
+.btn-gold:hover{background:var(--gold-pale);transform:translateY(-2px)}
+.hero .btn-gold{opacity:0;animation:fu 0.9s 0.52s ease forwards}
+.hero-filters{
+  display:flex;gap:0;margin-top:3rem;
+  border:0.5px solid var(--border);
+  opacity:0;animation:fu 0.9s 0.66s ease forwards;
+  position:relative;
+}
+.hero-filter{
+  padding:0.9rem 2rem;border-right:0.5px solid var(--border);
+  display:flex;flex-direction:column;gap:0.3rem;
+}
+.hero-filter:last-child{border-right:none}
+.hf-label{font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold)}
+.hf-val{font-size:0.72rem;color:var(--muted-mid);letter-spacing:0.04em}
+
+/* ── TICKER ── */
+.ticker-wrap{background:var(--gold);overflow:hidden;padding:0.78rem 0;white-space:nowrap}
+.ticker-track{display:inline-block;animation:ticker 28s linear infinite}
+.tick{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--navy);margin:0 2.2rem}
+
+/* ── SECTIONS COMMON ── */
+.section{padding:6.5rem 5vw}
+.section-mid{padding:6.5rem 5vw;background:var(--navy-mid);border-top:0.5px solid var(--border-soft)}
+.inner{max-width:1100px;margin:0 auto}
+.tag{
+  font-size:0.52rem;letter-spacing:0.42em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:0.9rem;display:flex;align-items:center;gap:0.75rem;
+}
+.tag::before{content:'';width:22px;height:0.5px;background:var(--gold)}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.8vw,3.8rem);font-weight:300;
+  line-height:1.12;letter-spacing:-0.01em;margin-bottom:1.4rem;
+}
+.sec-title em{font-style:italic;color:var(--gold-light)}
+.sec-body{font-size:0.83rem;line-height:1.95;color:var(--muted);letter-spacing:0.025em}
+
+/* ── SERVIÇO ── */
+.servico-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start}
+.servico-quote{
+  font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;
+  font-weight:300;color:var(--gold-light);line-height:1.5;
+  padding-left:1.3rem;border-left:1.5px solid var(--gold);margin-top:2.2rem;
+}
+.pillars{display:flex;flex-direction:column;gap:0}
+.pillar{
+  padding:1.6rem 0;border-bottom:0.5px solid var(--border-soft);
+  display:grid;grid-template-columns:2.8rem 1fr;gap:1rem;align-items:start;
+}
+.pillar:first-child{border-top:0.5px solid var(--border-soft)}
+.pillar-n{
+  font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;
+  color:rgba(184,151,58,0.18);line-height:1;padding-top:0.1rem;
+}
+.pillar-title{font-size:0.67rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.4rem}
+.pillar-desc{font-size:0.74rem;line-height:1.82;color:var(--muted);letter-spacing:0.02em}
+
+/* ── ELEGIBILIDADE ── */
+.elig-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.55rem,2.55vw,2.75rem);font-weight:300;
+  line-height:1.08;margin-bottom:3rem;max-width:980px;
+}
+.elig-title em{font-style:italic;color:var(--gold-light)}
+.elig-cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--border)}
+.elig-col{padding:2.2rem 2.5rem}
+.elig-col:first-child{border-right:0.5px solid var(--border)}
+.elig-col-title{
+  font-size:0.55rem;letter-spacing:0.38em;text-transform:uppercase;
+  margin-bottom:1.6rem;padding-bottom:1rem;border-bottom:0.5px solid var(--border-soft);
+}
+.elig-col-title.yes{color:var(--gold-light)}
+.elig-col-title.no{color:rgba(255,255,255,0.25)}
+.elig-item{
+  display:flex;align-items:flex-start;gap:0.85rem;
+  padding:0.85rem 0;border-bottom:0.5px solid var(--border-soft);
+  font-size:0.78rem;line-height:1.6;letter-spacing:0.02em;
+}
+.elig-item:last-child{border-bottom:none;padding-bottom:0}
+.elig-item.yes{color:rgba(255,255,255,0.8)}
+.elig-item.no{color:rgba(255,255,255,0.3)}
+.emark{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:0.42rem}
+.emark.yes{background:var(--gold)}
+.emark.no{background:rgba(255,255,255,0.15)}
+
+/* ── SERVIÇO UNIFICADO (como funciona + alinhamento) ── */
+.service-block{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.service-left .sec-body{margin-bottom:2rem}
+.service-quote{
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;
+  font-weight:300;color:var(--gold-light);line-height:1.55;
+  padding-left:1.2rem;border-left:1.5px solid var(--gold);
+}
+.service-items{display:flex;flex-direction:column;gap:0}
+.sitem{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.4rem 0;border-bottom:0.5px solid var(--border-soft);
+}
+.sitem:first-child{border-top:0.5px solid var(--border-soft)}
+.sitem-arrow{
+  font-size:0.62rem;color:var(--gold);flex-shrink:0;
+  margin-top:0.22rem;opacity:0.8;
+}
+.sitem-title{font-size:0.67rem;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.38rem}
+.sitem-desc{font-size:0.75rem;line-height:1.82;color:rgba(255,255,255,0.55);letter-spacing:0.02em}
+
+/* ── GARANTIA ── */
+.garantia-inner{text-align:center;max-width:680px;margin:0 auto}
+.garantia-inner .tag{justify-content:center}
+.garantia-inner .tag::before{display:none}
+.garantia-inner .tag::after{content:'';width:22px;height:0.5px;background:var(--gold)}
+.garantia-inner .sec-title{text-align:center}
+.garantia-inner .sec-body{max-width:760px;margin:0 auto 3rem;text-align:center}
+.gar-box{
+  border:0.5px solid var(--gold);padding:2.6rem;
+  position:relative;overflow:hidden;text-align:left;margin-bottom:2.5rem;
+}
+.gar-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--gold-light),transparent);
+}
+.gar-list{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1.5rem}
+.gar-item{display:flex;align-items:flex-start;gap:0.85rem;font-size:0.78rem;line-height:1.6;color:var(--muted)}
+.gdot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:0.42rem}
+.gar-result{
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;
+  color:var(--gold-light);line-height:1.55;
+  padding-top:1.3rem;border-top:0.5px solid var(--border);
+}
+
+/* ── RESULTADOS ── */
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border:0.5px solid var(--border);margin-bottom:5rem;
+}
+.stat{padding:2.8rem 2rem;border-right:0.5px solid var(--border);text-align:center}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:0.4rem}
+.stat-l{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.result-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.result-content .tag{margin-bottom:1.2rem}
+.result-label{
+  font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.5rem;
+}
+.result-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;
+  line-height:1.3;color:var(--white);margin-bottom:1rem;
+}
+.result-title strong{font-weight:400;color:var(--gold-light)}
+.result-desc{font-size:0.78rem;line-height:1.9;color:var(--muted);margin-bottom:2rem}
+
+/* ── MARCAÇÕES REAIS ── */
+.social-layout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start}
+.social-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,2.6vw,2.65rem);font-weight:300;line-height:1.12;
+  margin-bottom:1.2rem;max-width:360px;
+}
+.social-cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0.8rem;
+  align-items:stretch;
+}
+.soc-card{position:relative;overflow:hidden;background:var(--navy-card);border:0.5px solid var(--border-soft)}
+.soc-card.tall .soc-img-placeholder,
+.soc-card.short .soc-img-placeholder{height:260px}
+.soc-img-placeholder{width:100%;height:260px;background:var(--navy-card)}
+.soc-card img{width:100%;display:block;object-fit:cover}
+.soc-card.tall img,
+.soc-card.short img{height:260px}
+.soc-card-info{padding:1rem 1.1rem 1.2rem}
+.soc-handle{font-size:0.58rem;font-weight:500;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.3rem;text-transform:lowercase}
+.soc-card-title{font-size:0.82rem;font-weight:500;line-height:1.35;color:var(--white)}
+.soc-type{font-size:0.72rem;font-weight:500;line-height:1.35;color:var(--white);margin-bottom:0.25rem}
+.soc-card-desc{font-size:0.68rem;line-height:1.6;color:var(--muted)}
+/* ── SOBRE ── */
+.sobre-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:7rem;align-items:center}
+.sobre-img-wrap{position:relative}
+.sobre-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border:0.5px solid var(--border)}
+.sobre-img-placeholder{
+  width:100%;aspect-ratio:3/4;background:var(--navy-card);
+  border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.sobre-mono{font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;color:rgba(184,151,58,0.07);user-select:none}
+.sobre-img-label{position:absolute;bottom:1.2rem;left:1.4rem;right:1.4rem;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+.sobre-eyebrow{font-size:0.52rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+.sobre-bio{font-size:0.8rem;line-height:2;color:var(--muted);margin-bottom:2rem;letter-spacing:0.025em}
+.sobre-facts{display:flex;flex-direction:column;border:0.5px solid var(--border);margin-bottom:2rem}
+.sfact{
+  display:flex;align-items:flex-start;gap:0.9rem;
+  padding:0.9rem 1.3rem;border-bottom:0.5px solid var(--border);
+  font-size:0.72rem;color:rgba(255,255,255,0.56);line-height:1.5;letter-spacing:0.02em;
+}
+.sfact:last-child{border-bottom:none}
+.fdot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:0.44rem}
+.sobre-quote{
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;
+  color:var(--gold-light);line-height:1.5;padding-top:1.5rem;border-top:0.5px solid var(--border);
+}
+
+/* ── CTA FINAL ── */
+.cta-final{
+  background:var(--navy-mid);text-align:center;padding:8rem 5vw 4.4rem;
+  position:relative;overflow:hidden;border-top:0.5px solid var(--border-soft);
+}
+.cta-final::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 52% 62% at 50% 50%,rgba(184,151,58,0.055) 0%,transparent 70%);
+}
+.cta-tag{
+  font-size:0.52rem;letter-spacing:0.44em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:2.2rem;display:flex;align-items:center;justify-content:center;gap:1rem;
+  position:relative;
+}
+.cta-tag::before,.cta-tag::after{content:'';width:26px;height:0.5px;background:var(--gold)}
+.cta-final h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4.5vw,5rem);font-weight:300;
+  line-height:1.08;max-width:700px;margin:0 auto 1.5rem;position:relative;
+}
+.cta-final h2 em{font-style:italic;color:var(--gold-light)}
+.cta-final p{font-size:0.83rem;line-height:1.95;color:var(--muted);max-width:460px;margin:0 auto 3rem;position:relative}
+.cta-final .cta-disclaimer{margin:5rem auto 0;font-size:0.56rem;letter-spacing:0.18em;color:rgba(255,255,255,0.18);position:relative}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);border-top:0.5px solid var(--border);
+  padding:0.75rem 5vw;display:grid;grid-template-columns:minmax(150px,180px) 1fr;
+  align-items:center;gap:1rem;
+}
+.footer-logo{width:min(180px,100%);height:auto;display:block}
+.footer-links{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:0.4rem;font-size:0.52rem;letter-spacing:0.04em;color:var(--muted)}
+.footer-links a{
+  color:var(--muted);text-decoration:none;transition:color 0.2s,border-color 0.2s,background 0.2s;
+  display:inline-flex;align-items:center;gap:0.32rem;border:0.5px solid var(--border-soft);
+  padding:0.3rem 0.48rem;background:rgba(255,255,255,0.018);
+}
+.footer-links a:hover{color:var(--gold-light)}
+.footer-icon{width:11px;height:11px;flex-shrink:0;color:var(--gold-light)}
+
+/* ── REVEAL ── */
+.r{opacity:0;transform:translateY(16px);transition:opacity 0.75s ease,transform 0.75s ease}
+.r.v{opacity:1;transform:translateY(0)}
+.r2{opacity:0;transform:translateY(16px);transition:opacity 0.75s 0.12s ease,transform 0.75s 0.12s ease}
+.r2.v{opacity:1;transform:translateY(0)}
+
+/* ── ANIMATIONS ── */
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .servico-grid,.service-block,.sobre-grid,.elig-cols,.result-grid,.social-layout{grid-template-columns:1fr;gap:3rem}
+  .social-cards{grid-template-columns:1fr 1fr}
+  .elig-col:first-child{border-right:none;border-bottom:0.5px solid var(--border)}
+  .hero-filters{flex-wrap:wrap}
+  .hero-filter{border-right:none;border-bottom:0.5px solid var(--border)}
+  .stats-row{grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:0.5px solid var(--border)}
+  .stat:last-child{border-bottom:none}
+  footer{grid-template-columns:1fr;gap:0.7rem;text-align:center}
+  .footer-logo{margin:0 auto;width:min(170px,100%)}
+  .footer-links{justify-content:center}
+}
+@media(max-width:560px){
+  .social-cards{grid-template-columns:1fr}
+  .nav-divider,.nav-text{display:none}
+  .footer-links{flex-direction:column;align-items:stretch}
+  .footer-links a{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#">
+      <img class="nav-mark" src="assets/logo-henrique-baroni-mark-cropped.png" alt="Henrique Baroni">
+    </a>
+    <div class="nav-divider"></div>
+    <span class="nav-text">Gestor Estratégico de Milhas e Viagens</span>
+  </div>
+  <a href="#aplicar" class="nav-cta">Solicitar Análise</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Gestão Anual de Milhas e Viagens</div>
+  <h1>Você escolhe o destino.<br><em>Eu não ensino nada.</em><br>Executo tudo para você.</h1>
+  <p class="hero-sub">
+    <strong class="hero-line">Economize tempo. Sua única preocupação<br>vai ser escolher o próximo destino.</strong><br><br>
+    Gestão estratégica e personalizada de milhas e viagens, com acompanhamento próximo, transparência total e estratégia construída junto com você.
+  </p>
+  <a href="#aplicar" class="btn-gold">Solicitar Análise de Perfil</a>
+  <div class="hero-filters">
+    <div class="hero-filter">
+      <span class="hf-label">Investimento</span>
+      <span class="hf-val">A partir de R$ 10.000 / ano</span>
+    </div>
+    <div class="hero-filter">
+      <span class="hf-label">Perfil indicado</span>
+      <span class="hf-val">Mínimo 3 viagens internacionais / ano</span>
+    </div>
+    <div class="hero-filter">
+      <span class="hf-label">Prioridade</span>
+      <span class="hf-val">Prioriza voos em classe executiva</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="tick">Economia de Tempo</span><span class="tick">Economia Financeira</span><span class="tick">Classe Executiva</span><span class="tick">Gestão Premium</span><span class="tick">Zero Burocracia</span><span class="tick">Atendimento Exclusivo</span>
+    <span class="tick">Economia de Tempo</span><span class="tick">Economia Financeira</span><span class="tick">Classe Executiva</span><span class="tick">Gestão Premium</span><span class="tick">Zero Burocracia</span><span class="tick">Atendimento Exclusivo</span>
+  </div>
+</div>
+
+<!-- SERVIÇO + COMO FUNCIONA (unificado) -->
+<section class="section-mid">
+  <div class="inner">
+    <div class="service-block r">
+      <div class="service-left">
+        <div class="tag">O Serviço</div>
+        <h2 class="sec-title">Este serviço foi construído para quem <em>já chegou lá</em> e quer viajar à altura disso.</h2>
+        <p class="sec-body">A base do meu trabalho é alinhamento de expectativas e transparência. Entendo o perfil de cada cliente para construir uma estratégia realmente eficiente, jogando junto em cada decisão. Não vendo passagens. Atuo como gestor pessoal de viagens em uma gestão contínua de 12 meses.</p>
+        <blockquote class="service-quote">Eu não ensino. Eu executo toda a estratégia para você.</blockquote>
+      </div>
+      <div class="service-items">
+        <div class="sitem">
+          <span class="sitem-arrow">→</span>
+          <div>
+            <div class="sitem-title">Alinhamento de expectativas</div>
+            <div class="sitem-desc">Antes de qualquer coisa, entendo o que você espera e o que é possível entregar. Cada resultado depende do cenário, das milhas disponíveis e da disponibilidade de voos. Trabalho com transparência total em cada análise.</div>
+          </div>
+        </div>
+        <div class="sitem">
+          <span class="sitem-arrow">→</span>
+          <div>
+            <div class="sitem-title">Estratégia de acúmulo e emissão</div>
+            <div class="sitem-desc">Onboarding estratégico para entender seu perfil, cartões e objetivos. Monitoramento contínuo, alertas exclusivos e emissão nas melhores condições, usando milhas ou dinheiro.</div>
+          </div>
+        </div>
+        <div class="sitem">
+          <span class="sitem-arrow">→</span>
+          <div>
+            <div class="sitem-title">Suporte completo</div>
+            <div class="sitem-desc">Check-ins, remarcações, cancelamentos e imprevistos resolvidos por mim, direto no WhatsApp, sem burocracia.</div>
+          </div>
+        </div>
+        <div class="sitem">
+          <span class="sitem-arrow">→</span>
+          <div>
+            <div class="sitem-title">90% dos casos: condição melhor que a cia aérea</div>
+            <div class="sitem-desc">Na maior parte dos cenários, a condição encontrada para o seu voo, seja executiva ou econômica, é melhor do que a oferecida diretamente pela companhia. Não é uma promessa absoluta: depende do momento e da disponibilidade. Mas é o resultado mais comum.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ELEGIBILIDADE -->
+<section class="section">
+  <div class="inner r">
+    <div class="tag">Elegibilidade</div>
+    <h2 class="elig-title">Faz sentido para quem gasta <em>acima de R$ 30 mil/mês</em> no cartão<br>e quer viajar melhor sem perder tempo com isso.</h2>
+    <div class="elig-cols">
+      <div class="elig-col">
+        <div class="elig-col-title yes">Para quem é</div>
+        <div class="elig-item yes"><span class="emark yes"></span>Gasta acima de R$ 30 mil/mês no cartão</div>
+        <div class="elig-item yes"><span class="emark yes"></span>Realiza ao menos 3 viagens internacionais por ano</div>
+        <div class="elig-item yes"><span class="emark yes"></span>Prioriza classe executiva, conforto e otimização de tempo</div>
+        <div class="elig-item yes"><span class="emark yes"></span>Quer maximizar milhas sem dedicar tempo ao assunto</div>
+        <div class="elig-item yes"><span class="emark yes"></span>Valoriza praticidade, exclusividade e acompanhamento próximo</div>
+      </div>
+      <div class="elig-col">
+        <div class="elig-col-title no">Para quem não é</div>
+        <div class="elig-item no"><span class="emark no"></span>Busca passagens promocionais e ofertas do dia</div>
+        <div class="elig-item no"><span class="emark no"></span>Quer aprender milhas por conta própria</div>
+        <div class="elig-item no"><span class="emark no"></span>Viaja raramente ou de forma não planejada</div>
+        <div class="elig-item no"><span class="emark no"></span>Prioriza preço acima de experiência</div>
+        <div class="elig-item no"><span class="emark no"></span>Busca solução pontual sem continuidade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="section-mid">
+  <div class="inner">
+    <div class="garantia-inner r">
+      <div class="tag" style="justify-content:center">Garantia Risco Zero</div>
+      <h2 class="sec-title">Você só <em>ganha</em></h2>
+      <p class="sec-body">Quem decide com inteligência não toma riscos desnecessários. Por isso o compromisso é simples:<br>ou você tem retorno real, ou eu cubro a diferença.</p>
+      <div class="gar-box">
+        <div class="gar-list">
+          <div class="gar-item"><span class="gdot"></span>Gastar R$ 30.000 ou mais por mês no cartão</div>
+          <div class="gar-item"><span class="gdot"></span>Realizar pelo menos 4 viagens no ano</div>
+          <div class="gar-item"><span class="gdot"></span>Seguir as estratégias personalizadas que eu direcionar</div>
+        </div>
+        <div class="gar-result">E ainda assim não economizar pelo menos o valor investido no serviço, eu reembolso a diferença. Na pior das hipóteses, você terá um gestor de milhas e viagens de graça por 12 meses.</div>
+      </div>
+      <a href="#aplicar" class="btn-gold">Quero uma gestão exclusiva</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAÇÕES REAIS -->
+<section class="section">
+  <div class="inner">
+    <div class="social-layout r">
+      <div class="social-left">
+        <div class="tag">Marcações reais</div>
+        <h2 class="social-title">Clientes compartilham a experiência<br>quando a viagem acontece<br>do jeito certo.</h2>
+      </div>
+      <div class="social-cards">
+        <div class="soc-card tall">
+          <!-- Substitua: <img src="assets/marcacao-1.jpg" alt=""> -->
+          <div class="soc-img-placeholder"></div>
+          <div class="soc-card-info">
+            <div class="soc-handle">@cliente.executivo</div>
+            <div class="soc-card-title">Embarque premium confirmado</div>
+          </div>
+        </div>
+        <div class="soc-card short">
+          <!-- Substitua: <img src="assets/marcacao-2.jpg" alt=""> -->
+          <div class="soc-img-placeholder"></div>
+          <div class="soc-card-info">
+            <div class="soc-type">Print de cliente</div>
+            <div class="soc-card-desc">Marcação no lounge, aeroporto ou cabine</div>
+          </div>
+        </div>
+        <div class="soc-card tall">
+          <!-- Substitua: <img src="assets/marcacao-3.jpg" alt=""> -->
+          <div class="soc-img-placeholder"></div>
+          <div class="soc-card-info">
+            <div class="soc-handle">@cliente.familia</div>
+            <div class="soc-card-title">Viagem organizada com milhas</div>
+          </div>
+        </div>
+        <div class="soc-card short">
+          <!-- Substitua: <img src="assets/marcacao-4.jpg" alt=""> -->
+          <div class="soc-img-placeholder"></div>
+          <div class="soc-card-info">
+            <div class="soc-type">Antes e depois da emissão</div>
+            <div class="soc-card-desc">Economia, rota e experiência final</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section-mid">
+  <div class="inner">
+    <div class="sobre-grid r">
+      <div class="sobre-img-wrap">
+        <!-- Substitua por foto real: <img class="sobre-img" src="assets/henrique-baroni-sobre.jpg" alt="Henrique Baroni"> -->
+        <div class="sobre-img-placeholder">
+          <div class="sobre-mono">HB</div>
+          <div class="sobre-img-label">Henrique Baroni · Gestão premium e discreta</div>
+        </div>
+      </div>
+      <div>
+        <div class="sobre-eyebrow">Sobre Henrique Baroni</div>
+        <h2 class="sec-title">De uma paixão por viagens<br><em>a uma gestão de alto padrão.</em></h2>
+        <p class="sobre-bio">Comecei em 2019 transformando pontos em experiências reais de alto padrão. Hoje uso essa vivência para cuidar da estratégia, da emissão e dos bastidores das viagens de quem valoriza tempo, conforto e discrição. Meu trabalho é baseado em alinhamento de expectativas, transparência e acompanhamento próximo, jogando junto com cada cliente em cada decisão.</p>
+        <div class="sobre-facts">
+          <div class="sfact"><span class="fdot"></span>Atuando desde 2019 no mercado premium de milhas</div>
+          <div class="sfact"><span class="fdot"></span>Especialista em emissões executivas e primeira classe</div>
+          <div class="sfact"><span class="fdot"></span>Domínio de programas nacionais e internacionais</div>
+          <div class="sfact"><span class="fdot"></span>Atendimento direto, sigiloso e personalizado</div>
+          <div class="sfact"><span class="fdot"></span>Perfil detalhista, estratégico e extremamente discreto</div>
+        </div>
+        <div class="sobre-quote">"Eu executo aquilo que vivo."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="aplicar">
+  <div class="cta-tag">Acesso restrito</div>
+  <h2 class="r">A gestão faz sentido<br><em>para poucos perfis.</em></h2>
+  <p class="r">Se você valoriza tempo, conforto e experiências de alto padrão, solicite uma análise personalizada. Avalio seu perfil e mostro se a gestão anual faz sentido para você.</p>
+  <a href="https://wa.me/5521969434579?text=Ol%C3%A1%2C%20Henrique.%20Vim%20do%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20de%20perfil." class="btn-gold r">Solicitar Análise de Perfil</a>
+  <p class="cta-disclaimer r">Vagas limitadas · Atendimento exclusivo · Seleção por perfil</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo" src="assets/logo-henrique-baroni-horizontal-transparent.png" alt="Henrique Baroni">
+  <div class="footer-links">
+    <a href="mailto:baroni.gestordemilhas@gmail.com" aria-label="Enviar e-mail para Henrique Baroni">
+      <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <span>baroni.gestordemilhas@gmail.com</span>
+    </a>
+    <a href="tel:+5521969434579" aria-label="Ligar para Henrique Baroni">
+      <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L9 10.61a16 16 0 0 0 4.39 4.39l1.18-1.18a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92Z"/></svg>
+      <span>21 96943-4579</span>
+    </a>
+    <a href="https://instagram.com/henrique.baroni" target="_blank" aria-label="Abrir Instagram de Henrique Baroni">
+      <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+      <span>@henrique.baroni</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+const els = document.querySelectorAll('.r, .r2');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
