@@ -234,30 +234,24 @@ nav{
 .social-cards{
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:0.8rem;
+  gap:1rem;
   align-items:stretch;
 }
 .soc-card{
-  position:relative;overflow:hidden;background:linear-gradient(145deg,#171b26,#070a11);
-  border:1px solid rgba(255,255,255,0.12);border-radius:1.65rem;
-  padding:0.48rem 0.48rem 0.85rem;box-shadow:0 22px 55px rgba(0,0,0,0.32);
-  cursor:pointer;
-}
-.soc-card::before{
-  content:'';position:absolute;top:0.55rem;left:50%;transform:translateX(-50%);
-  width:34%;height:0.55rem;border-radius:999px;background:#05070d;z-index:2;
-}
-.soc-card::after{
-  content:'';position:absolute;left:50%;bottom:0.34rem;transform:translateX(-50%);
-  width:30%;height:0.16rem;border-radius:999px;background:rgba(255,255,255,0.42);z-index:2;
+  appearance:none;border:0;background:transparent;padding:0;cursor:pointer;text-align:left;
+  display:flex;flex-direction:column;gap:0.8rem;min-width:0;
 }
 .soc-card img{
-  width:100%;height:clamp(250px,25vw,390px);display:block;object-fit:cover;
-  border-radius:1.16rem;
+  width:100%;height:clamp(220px,22vw,330px);display:block;object-fit:cover;
+  border:0.5px solid var(--border-soft);
   filter:grayscale(1) contrast(1.04);
   transition:filter 0.35s ease,transform 0.35s ease;
 }
 .soc-card:hover img{filter:grayscale(0) contrast(1);transform:scale(1.025)}
+.client-name{
+  font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold-light);line-height:1.35;text-align:center;
+}
 .lightbox{
   position:fixed;inset:0;z-index:300;background:rgba(4,7,13,0.88);
   display:flex;align-items:center;justify-content:center;padding:2rem;
@@ -344,14 +338,6 @@ footer{
 /* ── ANIMATIONS ── */
 @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes phoneSlide5{
-  0%,15%{transform:translateX(0)}
-  20%,35%{transform:translateX(-100%)}
-  40%,55%{transform:translateX(-200%)}
-  60%,75%{transform:translateX(-300%)}
-  80%,95%{transform:translateX(-400%)}
-  100%{transform:translateX(0)}
-}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -369,25 +355,15 @@ footer{
 }
 @media(max-width:560px){
   .social-cards{
-    width:min(270px,78vw);aspect-ratio:9/18.5;margin:0 auto;display:flex;gap:0;
-    overflow:hidden;position:relative;border-radius:2rem;padding:0.62rem 0.62rem 1rem;
-    background:linear-gradient(145deg,#171b26,#070a11);
-    border:1px solid rgba(255,255,255,0.12);box-shadow:0 22px 55px rgba(0,0,0,0.36);
+    display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;
+    width:100%;margin:0;padding:0 1.25rem 0.8rem;scrollbar-width:none;
   }
-  .social-cards::before{
-    content:'';position:absolute;top:0.68rem;left:50%;transform:translateX(-50%);
-    width:34%;height:0.58rem;border-radius:999px;background:#05070d;z-index:4;
-  }
-  .social-cards::after{
-    content:'';position:absolute;left:50%;bottom:0.42rem;transform:translateX(-50%);
-    width:30%;height:0.16rem;border-radius:999px;background:rgba(255,255,255,0.42);z-index:4;
-  }
+  .social-cards::-webkit-scrollbar{display:none}
   .soc-card{
-    flex:0 0 100%;height:100%;padding:0;border:0;border-radius:1.35rem;background:none;
-    box-shadow:none;animation:phoneSlide5 20s infinite ease-in-out;
+    flex:0 0 min(78vw,310px);scroll-snap-align:center;gap:0.75rem;
   }
-  .soc-card::before,.soc-card::after{display:none}
-  .soc-card img{height:100%;border-radius:1.35rem}
+  .soc-card img{height:360px;filter:grayscale(1) contrast(1.04)}
+  .client-name{font-size:0.66rem;letter-spacing:0.16em}
   .hero-filters{justify-items:center;text-align:center}
   .hero-filter{width:100%;align-items:center;text-align:center}
   .sobre-grid{gap:2rem}
@@ -536,19 +512,24 @@ footer{
       </div>
       <div class="social-cards">
         <button class="soc-card" type="button">
-          <img src="marcacao-iphone-01.jpeg" alt="Marcação real de cliente">
+          <img src="cliente-cezar-haik.png" alt="Cezar Haik">
+          <span class="client-name">Cezar Haik</span>
         </button>
         <button class="soc-card" type="button">
-          <img src="marcacao-iphone-02.jpeg" alt="Marcação real de cliente">
+          <img src="cliente-diogenes-queiroz-bjay.png" alt="Diogenes Queiroz Bjay">
+          <span class="client-name">Diogenes Queiroz Bjay</span>
         </button>
         <button class="soc-card" type="button">
-          <img src="marcacao-iphone-03.jpeg" alt="Marcação real de cliente">
+          <img src="cliente-heloisa-perisse.png" alt="Heloísa Périssé">
+          <span class="client-name">Heloísa Périssé</span>
         </button>
         <button class="soc-card" type="button">
-          <img src="marcacao-iphone-04.jpeg" alt="Marcação real de cliente">
+          <img src="cliente-luisa-perisse.png" alt="Luísa Perissé">
+          <span class="client-name">Luísa Perissé</span>
         </button>
         <button class="soc-card" type="button">
-          <img src="marcacao-iphone-05.jpeg" alt="Marcação real de cliente">
+          <img src="cliente-marilia-andriolli.png" alt="Marília Andriolli">
+          <span class="client-name">Marília Andriolli</span>
         </button>
       </div>
     </div>
