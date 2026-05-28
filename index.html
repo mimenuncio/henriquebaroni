@@ -225,7 +225,7 @@ nav{
 .result-desc{font-size:0.78rem;line-height:1.9;color:var(--muted);margin-bottom:2rem}
 
 /* ── MARCAÇÕES REAIS ── */
-.social-layout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start}
+.social-layout{display:grid;grid-template-columns:0.75fr 2.25fr;gap:3rem;align-items:start}
 .social-title{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.6rem,2.6vw,2.65rem);font-weight:300;line-height:1.12;
@@ -233,22 +233,46 @@ nav{
 }
 .social-cards{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,minmax(0,1fr));
   gap:0.8rem;
   align-items:stretch;
 }
-.soc-card{position:relative;overflow:hidden;background:var(--navy-card);border:0.5px solid var(--border-soft)}
-.soc-card.tall .soc-img-placeholder,
-.soc-card.short .soc-img-placeholder{height:260px}
-.soc-img-placeholder{width:100%;height:260px;background:var(--navy-card)}
+.soc-card{
+  position:relative;overflow:hidden;background:linear-gradient(145deg,#171b26,#070a11);
+  border:1px solid rgba(255,255,255,0.12);border-radius:1.65rem;
+  padding:0.48rem 0.48rem 0.85rem;box-shadow:0 22px 55px rgba(0,0,0,0.32);
+  cursor:pointer;
+}
+.soc-card::before{
+  content:'';position:absolute;top:0.55rem;left:50%;transform:translateX(-50%);
+  width:34%;height:0.55rem;border-radius:999px;background:#05070d;z-index:2;
+}
+.soc-card::after{
+  content:'';position:absolute;left:50%;bottom:0.34rem;transform:translateX(-50%);
+  width:30%;height:0.16rem;border-radius:999px;background:rgba(255,255,255,0.42);z-index:2;
+}
 .soc-card img{
-  width:100%;height:260px;display:block;object-fit:cover;
+  width:100%;height:clamp(250px,25vw,390px);display:block;object-fit:cover;
+  border-radius:1.16rem;
   filter:grayscale(1) contrast(1.04);
   transition:filter 0.35s ease,transform 0.35s ease;
 }
 .soc-card:hover img{filter:grayscale(0) contrast(1);transform:scale(1.025)}
-.soc-card.tall img,
-.soc-card.short img{height:260px}
+.lightbox{
+  position:fixed;inset:0;z-index:300;background:rgba(4,7,13,0.88);
+  display:flex;align-items:center;justify-content:center;padding:2rem;
+  opacity:0;visibility:hidden;transition:opacity 0.2s ease,visibility 0.2s ease;
+}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{
+  max-width:min(92vw,920px);max-height:88vh;object-fit:contain;
+  border:1px solid var(--border);box-shadow:0 30px 90px rgba(0,0,0,0.5);
+}
+.lightbox-close{
+  position:absolute;top:1.2rem;right:1.2rem;width:42px;height:42px;
+  border:0.5px solid var(--border);background:rgba(9,13,22,0.74);
+  color:var(--gold-light);font-size:1.5rem;line-height:1;cursor:pointer;
+}
 /* ── SOBRE ── */
 .sobre-grid{display:grid;grid-template-columns:minmax(220px,320px) 1.5fr;gap:5rem;align-items:start}
 .sobre-img-wrap{position:relative;align-self:stretch}
@@ -320,6 +344,14 @@ footer{
 /* ── ANIMATIONS ── */
 @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes phoneSlide5{
+  0%,15%{transform:translateX(0)}
+  20%,35%{transform:translateX(-100%)}
+  40%,55%{transform:translateX(-200%)}
+  60%,75%{transform:translateX(-300%)}
+  80%,95%{transform:translateX(-400%)}
+  100%{transform:translateX(0)}
+}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -336,9 +368,29 @@ footer{
   .footer-links{justify-content:center}
 }
 @media(max-width:560px){
-  .social-cards{grid-template-columns:1fr}
+  .social-cards{
+    width:min(270px,78vw);aspect-ratio:9/18.5;margin:0 auto;display:flex;gap:0;
+    overflow:hidden;position:relative;border-radius:2rem;padding:0.62rem 0.62rem 1rem;
+    background:linear-gradient(145deg,#171b26,#070a11);
+    border:1px solid rgba(255,255,255,0.12);box-shadow:0 22px 55px rgba(0,0,0,0.36);
+  }
+  .social-cards::before{
+    content:'';position:absolute;top:0.68rem;left:50%;transform:translateX(-50%);
+    width:34%;height:0.58rem;border-radius:999px;background:#05070d;z-index:4;
+  }
+  .social-cards::after{
+    content:'';position:absolute;left:50%;bottom:0.42rem;transform:translateX(-50%);
+    width:30%;height:0.16rem;border-radius:999px;background:rgba(255,255,255,0.42);z-index:4;
+  }
+  .soc-card{
+    flex:0 0 100%;height:100%;padding:0;border:0;border-radius:1.35rem;background:none;
+    box-shadow:none;animation:phoneSlide5 20s infinite ease-in-out;
+  }
+  .soc-card::before,.soc-card::after{display:none}
+  .soc-card img{height:100%;border-radius:1.35rem}
   .sobre-photo-stack{height:auto;grid-template-columns:1fr;grid-template-rows:auto;gap:0.8rem}
   .sobre-photo.primary,.sobre-photo.secondary{aspect-ratio:1/1}
+  .sobre-photo img{object-fit:contain}
   .nav-divider,.nav-text{display:none}
   .hero-actions,.cta-actions{flex-direction:column;align-items:stretch}
   .btn-gold,.btn-outline{text-align:center;padding-left:1rem;padding-right:1rem}
@@ -476,18 +528,21 @@ footer{
         <h2 class="social-title">Clientes compartilham a experiência<br>quando a viagem acontece<br>do jeito certo.</h2>
       </div>
       <div class="social-cards">
-        <div class="soc-card tall">
-          <img src="marcacao-real-01.jpg" alt="Marcação real de cliente">
-        </div>
-        <div class="soc-card short">
-          <img src="marcacao-real-02.webp" alt="Marcação real de cliente">
-        </div>
-        <div class="soc-card tall">
-          <img src="marcacao-real-03.webp" alt="Marcação real de cliente">
-        </div>
-        <div class="soc-card short">
-          <img src="marcacao-real-04.jpg" alt="Marcação real de cliente">
-        </div>
+        <button class="soc-card" type="button">
+          <img src="marcacao-iphone-01.jpeg" alt="Marcação real de cliente">
+        </button>
+        <button class="soc-card" type="button">
+          <img src="marcacao-iphone-02.jpeg" alt="Marcação real de cliente">
+        </button>
+        <button class="soc-card" type="button">
+          <img src="marcacao-iphone-03.jpeg" alt="Marcação real de cliente">
+        </button>
+        <button class="soc-card" type="button">
+          <img src="marcacao-iphone-04.jpeg" alt="Marcação real de cliente">
+        </button>
+        <button class="soc-card" type="button">
+          <img src="marcacao-iphone-05.jpeg" alt="Marcação real de cliente">
+        </button>
       </div>
     </div>
   </div>
@@ -555,6 +610,11 @@ footer{
   </div>
 </footer>
 
+<div class="lightbox" id="image-lightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+  <img src="" alt="">
+</div>
+
 <script>
 const els = document.querySelectorAll('.r, .r2');
 const obs = new IntersectionObserver(entries => {
@@ -563,6 +623,29 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
 els.forEach(el => obs.observe(el));
+
+const lightbox = document.getElementById('image-lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const closeLightbox = () => {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightboxImg.src = '';
+  lightboxImg.alt = '';
+};
+document.querySelectorAll('.soc-card img').forEach(img => {
+  img.closest('.soc-card').addEventListener('click', () => {
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  });
+});
+lightbox.addEventListener('click', event => {
+  if (event.target === lightbox || event.target.closest('.lightbox-close')) closeLightbox();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+});
 </script>
 </body>
 </html>
