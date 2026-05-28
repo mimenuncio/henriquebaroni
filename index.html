@@ -84,7 +84,17 @@ nav{
   transition:background 0.2s,transform 0.15s;position:relative;
 }
 .btn-gold:hover{background:var(--gold-pale);transform:translateY(-2px)}
-.hero .btn-gold{opacity:0;animation:fu 0.9s 0.52s ease forwards}
+.btn-outline{
+  display:inline-block;font-size:0.68rem;letter-spacing:0.24em;
+  text-transform:uppercase;color:var(--gold-light);background:transparent;
+  border:0.5px solid var(--gold);padding:1.06rem 2.5rem;
+  text-decoration:none;font-weight:600;transition:background 0.2s,transform 0.15s,color 0.2s;
+  position:relative;
+}
+.btn-outline:hover{background:rgba(184,151,58,0.12);color:var(--gold-pale);transform:translateY(-2px)}
+.hero-actions,.cta-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hero-actions{opacity:0;animation:fu 0.9s 0.52s ease forwards}
+.cta-actions{justify-content:center;margin-bottom:0;position:relative}
 .hero-filters{
   display:flex;gap:0;margin-top:3rem;
   border:0.5px solid var(--border);
@@ -107,6 +117,7 @@ nav{
 /* ── SECTIONS COMMON ── */
 .section{padding:6.5rem 5vw}
 .section-mid{padding:6.5rem 5vw;background:var(--navy-mid);border-top:0.5px solid var(--border-soft)}
+.sobre-section{padding-bottom:2.4rem}
 .inner{max-width:1100px;margin:0 auto}
 .tag{
   font-size:0.52rem;letter-spacing:0.42em;text-transform:uppercase;color:var(--gold);
@@ -156,7 +167,7 @@ nav{
   margin-bottom:1.6rem;padding-bottom:1rem;border-bottom:0.5px solid var(--border-soft);
 }
 .elig-col-title.yes{color:var(--gold-light)}
-.elig-col-title.no{color:rgba(255,255,255,0.25)}
+.elig-col-title.no{color:rgba(255,255,255,0.62)}
 .elig-item{
   display:flex;align-items:flex-start;gap:0.85rem;
   padding:0.85rem 0;border-bottom:0.5px solid var(--border-soft);
@@ -164,10 +175,10 @@ nav{
 }
 .elig-item:last-child{border-bottom:none;padding-bottom:0}
 .elig-item.yes{color:rgba(255,255,255,0.8)}
-.elig-item.no{color:rgba(255,255,255,0.3)}
+.elig-item.no{color:rgba(255,255,255,0.62)}
 .emark{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:0.42rem}
 .emark.yes{background:var(--gold)}
-.emark.no{background:rgba(255,255,255,0.15)}
+.emark.no{background:rgba(255,255,255,0.34)}
 
 /* ── SERVIÇO UNIFICADO (como funciona + alinhamento) ── */
 .service-block{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
@@ -189,30 +200,6 @@ nav{
 }
 .sitem-title{font-size:0.67rem;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.38rem}
 .sitem-desc{font-size:0.75rem;line-height:1.82;color:rgba(255,255,255,0.55);letter-spacing:0.02em}
-
-/* ── GARANTIA ── */
-.garantia-inner{text-align:center;max-width:680px;margin:0 auto}
-.garantia-inner .tag{justify-content:center}
-.garantia-inner .tag::before{display:none}
-.garantia-inner .tag::after{content:'';width:22px;height:0.5px;background:var(--gold)}
-.garantia-inner .sec-title{text-align:center}
-.garantia-inner .sec-body{max-width:760px;margin:0 auto 3rem;text-align:center}
-.gar-box{
-  border:0.5px solid var(--gold);padding:2.6rem;
-  position:relative;overflow:hidden;text-align:left;margin-bottom:2.5rem;
-}
-.gar-box::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
-  background:linear-gradient(90deg,transparent,var(--gold-light),transparent);
-}
-.gar-list{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1.5rem}
-.gar-item{display:flex;align-items:flex-start;gap:0.85rem;font-size:0.78rem;line-height:1.6;color:var(--muted)}
-.gdot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:0.42rem}
-.gar-result{
-  font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;
-  color:var(--gold-light);line-height:1.55;
-  padding-top:1.3rem;border-top:0.5px solid var(--border);
-}
 
 /* ── RESULTADOS ── */
 .stats-row{
@@ -254,25 +241,21 @@ nav{
 .soc-card.tall .soc-img-placeholder,
 .soc-card.short .soc-img-placeholder{height:260px}
 .soc-img-placeholder{width:100%;height:260px;background:var(--navy-card)}
-.soc-card img{width:100%;display:block;object-fit:cover}
+.soc-card img{
+  width:100%;height:260px;display:block;object-fit:cover;
+  filter:grayscale(1) contrast(1.04);
+  transition:filter 0.35s ease,transform 0.35s ease;
+}
+.soc-card:hover img{filter:grayscale(0) contrast(1);transform:scale(1.025)}
 .soc-card.tall img,
 .soc-card.short img{height:260px}
-.soc-card-info{padding:1rem 1.1rem 1.2rem}
-.soc-handle{font-size:0.58rem;font-weight:500;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.3rem;text-transform:lowercase}
-.soc-card-title{font-size:0.82rem;font-weight:500;line-height:1.35;color:var(--white)}
-.soc-type{font-size:0.72rem;font-weight:500;line-height:1.35;color:var(--white);margin-bottom:0.25rem}
-.soc-card-desc{font-size:0.68rem;line-height:1.6;color:var(--muted)}
 /* ── SOBRE ── */
-.sobre-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:7rem;align-items:center}
-.sobre-img-wrap{position:relative}
-.sobre-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border:0.5px solid var(--border)}
-.sobre-img-placeholder{
-  width:100%;aspect-ratio:3/4;background:var(--navy-card);
-  border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-}
-.sobre-mono{font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;color:rgba(184,151,58,0.07);user-select:none}
-.sobre-img-label{position:absolute;bottom:1.2rem;left:1.4rem;right:1.4rem;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+.sobre-grid{display:grid;grid-template-columns:minmax(220px,320px) 1.5fr;gap:5rem;align-items:start}
+.sobre-img-wrap{position:relative;align-self:stretch}
+.sobre-photo-stack{height:min(100%,620px);display:grid;grid-template-columns:1fr;grid-template-rows:1fr 1fr;gap:0.9rem}
+.sobre-photo{position:relative;overflow:hidden;border:0.5px solid var(--border);background:var(--navy-card)}
+.sobre-photo img{width:100%;height:100%;display:block;object-fit:cover}
+.sobre-photo.primary,.sobre-photo.secondary{aspect-ratio:auto;margin-bottom:0}
 .sobre-eyebrow{font-size:0.52rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
 .sobre-bio{font-size:0.8rem;line-height:2;color:var(--muted);margin-bottom:2rem;letter-spacing:0.025em}
 .sobre-facts{display:flex;flex-direction:column;border:0.5px solid var(--border);margin-bottom:2rem}
@@ -319,14 +302,14 @@ footer{
   align-items:center;gap:1rem;
 }
 .footer-logo{width:min(180px,100%);height:auto;display:block}
-.footer-links{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:0.4rem;font-size:0.52rem;letter-spacing:0.04em;color:var(--muted)}
+.footer-links{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:0.46rem;font-size:0.62rem;letter-spacing:0.04em;color:var(--muted)}
 .footer-links a{
   color:var(--muted);text-decoration:none;transition:color 0.2s,border-color 0.2s,background 0.2s;
   display:inline-flex;align-items:center;gap:0.32rem;border:0.5px solid var(--border-soft);
   padding:0.3rem 0.48rem;background:rgba(255,255,255,0.018);
 }
 .footer-links a:hover{color:var(--gold-light)}
-.footer-icon{width:11px;height:11px;flex-shrink:0;color:var(--gold-light)}
+.footer-icon{width:14px;height:14px;flex-shrink:0;color:var(--gold-light)}
 
 /* ── REVEAL ── */
 .r{opacity:0;transform:translateY(16px);transition:opacity 0.75s ease,transform 0.75s ease}
@@ -354,7 +337,11 @@ footer{
 }
 @media(max-width:560px){
   .social-cards{grid-template-columns:1fr}
+  .sobre-photo-stack{height:auto;grid-template-columns:1fr;grid-template-rows:auto;gap:0.8rem}
+  .sobre-photo.primary,.sobre-photo.secondary{aspect-ratio:1/1}
   .nav-divider,.nav-text{display:none}
+  .hero-actions,.cta-actions{flex-direction:column;align-items:stretch}
+  .btn-gold,.btn-outline{text-align:center;padding-left:1rem;padding-right:1rem}
   .footer-links{flex-direction:column;align-items:stretch}
   .footer-links a{justify-content:center}
 }
@@ -377,12 +364,15 @@ footer{
 <!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">Gestão Anual de Milhas e Viagens</div>
-  <h1>Você escolhe o destino.<br><em>Eu não ensino nada.</em><br>Executo tudo para você.</h1>
+  <h1><em>Eu não ensino nada.</em><br>Executo tudo para você!<br>Você só escolhe o destino.</h1>
   <p class="hero-sub">
     <strong class="hero-line">Economize tempo. Sua única preocupação<br>vai ser escolher o próximo destino.</strong><br><br>
     Gestão estratégica e personalizada de milhas e viagens, com acompanhamento próximo, transparência total e estratégia construída junto com você.
   </p>
-  <a href="#aplicar" class="btn-gold">Solicitar Análise de Perfil</a>
+  <div class="hero-actions">
+    <a href="#aplicar" class="btn-gold">Solicitar Análise de Perfil</a>
+    <a href="https://wa.me/5521969434579?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20cotar%20uma%20passagem%20executiva" class="btn-outline">Cotar passagem executiva</a>
+  </div>
   <div class="hero-filters">
     <div class="hero-filter">
       <span class="hf-label">Investimento</span>
@@ -455,7 +445,7 @@ footer{
 <section class="section">
   <div class="inner r">
     <div class="tag">Elegibilidade</div>
-    <h2 class="elig-title">Faz sentido para quem gasta <em>acima de R$ 30 mil/mês</em> no cartão<br>e quer viajar melhor sem perder tempo com isso.</h2>
+    <h2 class="elig-title">Faz sentido para quem gasta <em>acima de R$ 30 mil/mês</em> no cartão<br>e quer viajar melhor usando suas milhas de forma eficiente.</h2>
     <div class="elig-cols">
       <div class="elig-col">
         <div class="elig-col-title yes">Para quem é</div>
@@ -477,26 +467,6 @@ footer{
   </div>
 </section>
 
-<!-- GARANTIA -->
-<section class="section-mid">
-  <div class="inner">
-    <div class="garantia-inner r">
-      <div class="tag" style="justify-content:center">Garantia Risco Zero</div>
-      <h2 class="sec-title">Você só <em>ganha</em></h2>
-      <p class="sec-body">Quem decide com inteligência não toma riscos desnecessários. Por isso o compromisso é simples:<br>ou você tem retorno real, ou eu cubro a diferença.</p>
-      <div class="gar-box">
-        <div class="gar-list">
-          <div class="gar-item"><span class="gdot"></span>Gastar R$ 30.000 ou mais por mês no cartão</div>
-          <div class="gar-item"><span class="gdot"></span>Realizar pelo menos 4 viagens no ano</div>
-          <div class="gar-item"><span class="gdot"></span>Seguir as estratégias personalizadas que eu direcionar</div>
-        </div>
-        <div class="gar-result">E ainda assim não economizar pelo menos o valor investido no serviço, eu reembolso a diferença. Na pior das hipóteses, você terá um gestor de milhas e viagens de graça por 12 meses.</div>
-      </div>
-      <a href="#aplicar" class="btn-gold">Quero uma gestão exclusiva</a>
-    </div>
-  </div>
-</section>
-
 <!-- MARCAÇÕES REAIS -->
 <section class="section">
   <div class="inner">
@@ -507,36 +477,16 @@ footer{
       </div>
       <div class="social-cards">
         <div class="soc-card tall">
-          <!-- Substitua: <img src="assets/marcacao-1.jpg" alt=""> -->
-          <div class="soc-img-placeholder"></div>
-          <div class="soc-card-info">
-            <div class="soc-handle">@cliente.executivo</div>
-            <div class="soc-card-title">Embarque premium confirmado</div>
-          </div>
+          <img src="assets/marcacao-real-01.jpg" alt="Marcação real de cliente">
         </div>
         <div class="soc-card short">
-          <!-- Substitua: <img src="assets/marcacao-2.jpg" alt=""> -->
-          <div class="soc-img-placeholder"></div>
-          <div class="soc-card-info">
-            <div class="soc-type">Print de cliente</div>
-            <div class="soc-card-desc">Marcação no lounge, aeroporto ou cabine</div>
-          </div>
+          <img src="assets/marcacao-real-02.webp" alt="Marcação real de cliente">
         </div>
         <div class="soc-card tall">
-          <!-- Substitua: <img src="assets/marcacao-3.jpg" alt=""> -->
-          <div class="soc-img-placeholder"></div>
-          <div class="soc-card-info">
-            <div class="soc-handle">@cliente.familia</div>
-            <div class="soc-card-title">Viagem organizada com milhas</div>
-          </div>
+          <img src="assets/marcacao-real-03.webp" alt="Marcação real de cliente">
         </div>
         <div class="soc-card short">
-          <!-- Substitua: <img src="assets/marcacao-4.jpg" alt=""> -->
-          <div class="soc-img-placeholder"></div>
-          <div class="soc-card-info">
-            <div class="soc-type">Antes e depois da emissão</div>
-            <div class="soc-card-desc">Economia, rota e experiência final</div>
-          </div>
+          <img src="assets/marcacao-real-04.jpg" alt="Marcação real de cliente">
         </div>
       </div>
     </div>
@@ -544,14 +494,17 @@ footer{
 </section>
 
 <!-- SOBRE -->
-<section class="section-mid">
+<section class="section-mid sobre-section">
   <div class="inner">
     <div class="sobre-grid r">
       <div class="sobre-img-wrap">
-        <!-- Substitua por foto real: <img class="sobre-img" src="assets/henrique-baroni-sobre.jpg" alt="Henrique Baroni"> -->
-        <div class="sobre-img-placeholder">
-          <div class="sobre-mono">HB</div>
-          <div class="sobre-img-label">Henrique Baroni · Gestão premium e discreta</div>
+        <div class="sobre-photo-stack">
+          <figure class="sobre-photo primary">
+            <img src="assets/henrique-baroni-executiva.jpeg" alt="Henrique Baroni em cabine executiva">
+          </figure>
+          <figure class="sobre-photo secondary">
+            <img src="assets/henrique-baroni-patagonia.jpg" alt="Henrique Baroni em viagem na Patagônia">
+          </figure>
         </div>
       </div>
       <div>
@@ -576,7 +529,10 @@ footer{
   <div class="cta-tag">Acesso restrito</div>
   <h2 class="r">A gestão faz sentido<br><em>para poucos perfis.</em></h2>
   <p class="r">Se você valoriza tempo, conforto e experiências de alto padrão, solicite uma análise personalizada. Avalio seu perfil e mostro se a gestão anual faz sentido para você.</p>
-  <a href="https://wa.me/5521969434579?text=Ol%C3%A1%2C%20Henrique.%20Vim%20do%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20de%20perfil." class="btn-gold r">Solicitar Análise de Perfil</a>
+  <div class="cta-actions r">
+    <a href="https://wa.me/5521969434579?text=Ol%C3%A1%2C%20Henrique.%20Vim%20do%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20de%20perfil." class="btn-gold">Solicitar Análise de Perfil</a>
+    <a href="https://wa.me/5521969434579?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20cotar%20uma%20passagem%20executiva" class="btn-outline">Cotar passagem executiva</a>
+  </div>
   <p class="cta-disclaimer r">Vagas limitadas · Atendimento exclusivo · Seleção por perfil</p>
 </section>
 
